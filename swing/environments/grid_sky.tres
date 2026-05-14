@@ -1,0 +1,7 @@
+[gd_resource type="Sky" load_steps=2 format=3]
+
+[ext_resource type="Material" path="res://materials/grid_sky.tres" id="1"]
+
+[resource]
+sky_material = ExtResource("1")
+process_mode = 0

@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bq31e7h58vieh"]
+
+[ext_resource type="Shader" uid="uid://b3fc5y2nl28vk" path="res://shaders/checker.gdshader" id="1_xygne"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_xygne")
+shader_parameter/color_a = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/color_b = Color(0.3, 0.3, 0.3, 1)
+shader_parameter/tile_size = 2.0

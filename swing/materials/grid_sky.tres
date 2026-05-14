@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cuw01yjflpkrm"]
+
+[ext_resource type="Shader" uid="uid://dr4jts3271or7" path="res://shaders/grid_sky.gdshader" id="1_8sayv"]
+
+[resource]
+shader = ExtResource("1_8sayv")

@@ -1,0 +1,24 @@
+# Godot (swing/ has its own .gitignore for .godot/ etc.)
+
+# Claude Code session data — local only, not project state
+.claude/
+
+# MCP config may contain local paths / secrets
+.mcp.json
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor
+.vs/
+.idea/
+*.suo
+*.user
+*.tmp
+*.bak
+*~
+
+# Mood board images (generated locally, not source-controlled)
+docs/mood_board/
