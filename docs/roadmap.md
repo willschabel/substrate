@@ -50,11 +50,11 @@ A futuristic/medieval 3D multiplayer game built around an infinite 3D grid. Ever
 ## Phase 1 — The Base
 *First thing the player sees. Sets the tone of the entire game.*
 
-- [ ] Base scene (1 grid unit, 4 doors with open/closed state, placeholder interior)
-- [ ] Navigation controller UI — select a grid coordinate, confirm travel
-- [ ] Travel animation — base moves through grid, grid scrolls past windows
-- [ ] Loading hook — travel animation masks async location load (everything else plugs into this seam)
-- [ ] Lore camouflage system stub — other bases on the grid are invisible/incorporeal by design
+- [x] Base scene (1 grid unit, 4 doors with open/closed state, placeholder interior)
+- [x] Navigation controller UI — select a grid coordinate, confirm travel
+- [x] Travel animation — base moves through grid, grid scrolls past windows
+- [x] Loading hook — travel animation masks async location load (everything else plugs into this seam)
+- [x] Lore camouflage system stub — other bases on the grid are invisible/incorporeal by design
 - [ ] **Visual:** Base interior blockout — final geometry proportions, door placement, window placement (AI-assisted textures acceptable here, sets spatial expectations for all future base work)
 
 ---

@@ -5,14 +5,15 @@ uniform vec4 line_color : source_color = vec4(0.45, 0.72, 1.0, 1.0);
 uniform float grid_scale : hint_range(1.0, 50.0) = 8.0;
 uniform float line_thickness : hint_range(0.005, 0.1) = 0.025;
 uniform float fade_distance : hint_range(0.1, 1.0) = 0.6;
+uniform vec3 travel_offset = vec3(0.0);
 
 void sky() {
 	vec3 dir = normalize(EYEDIR);
 
-	// Project direction onto grid planes
-	vec2 grid_xz = dir.xz / (abs(dir.y) + 0.001) * grid_scale;
-	vec2 grid_xy = dir.xy / (abs(dir.z) + 0.001) * grid_scale;
-	vec2 grid_zy = dir.zy / (abs(dir.x) + 0.001) * grid_scale;
+	// Project direction onto grid planes, shifted by travel_offset to animate movement
+	vec2 grid_xz = dir.xz / (abs(dir.y) + 0.001) * grid_scale + travel_offset.xz;
+	vec2 grid_xy = dir.xy / (abs(dir.z) + 0.001) * grid_scale + travel_offset.xy;
+	vec2 grid_zy = dir.zy / (abs(dir.x) + 0.001) * grid_scale + travel_offset.zy;
 
 	vec2 f_xz = abs(fract(grid_xz) - 0.5);
 	vec2 f_xy = abs(fract(grid_xy) - 0.5);

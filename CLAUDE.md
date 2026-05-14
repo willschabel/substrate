@@ -46,7 +46,7 @@ substrate/  (repo root)
 
 **Phase 0 — Architecture Foundation** — complete (mood board pending, user-driven)
 
-**Phase 1 — The Base** — not started
+**Phase 1 — The Base** — in progress
 
 ---
 
@@ -77,6 +77,7 @@ substrate/  (repo root)
 | `dodge` | Q | active |
 | `attack_primary` | LMB | stub (Phase 2) |
 | `attack_secondary` | RMB | stub (Phase 2) |
+| `nav_open` | Tab | toggle navigation controller UI |
 
 ## Multiplayer Authority Model
 
@@ -127,6 +128,7 @@ All game logic must have unit tests written alongside it using **GUT** (Godot Un
 - Every test file extends `GutTest`
 - Write or update tests in the same session as the code they cover — do not defer
 - Pure autoloads, base classes, and utility functions must be tested; scene-level glue code and pure visual behaviour need not be
+- **After writing or updating tests, always run them via `test_run` before asking the user to test.** Fix any failures before handing off. Do not mark a roadmap item `[~]` if tests are failing. Note: `test_run` only discovers files directly in `res://tests/` — subdirectories require running via the GUT panel in the editor.
 
 ### Keeping Docs Current
 

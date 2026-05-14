@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://djbglg2yrgn0u"]
+
+[ext_resource type="Script" uid="uid://dh8ai5rf2ubuj" path="res://scripts/ui/nav_controller.gd" id="1_rogf8"]
+
+[node name="NavController" type="CanvasLayer" unique_id=1163747374]
+script = ExtResource("1_rogf8")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1983019869]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -160.0
+offset_right = 200.0
+offset_bottom = 160.0
+
+[node name="VBox" type="VBoxContainer" parent="Panel" unique_id=275007780]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Panel/VBox" unique_id=1950650659]
+layout_mode = 2
+text = "NAVIGATION SYSTEM"
+
+[node name="CurrentLabel" type="Label" parent="Panel/VBox" unique_id=595817022]
+layout_mode = 2
+text = "Current: [0, 0, 0]"
+
+[node name="Separator" type="HSeparator" parent="Panel/VBox" unique_id=1460461673]
+layout_mode = 2
+
+[node name="CoordRow" type="HBoxContainer" parent="Panel/VBox" unique_id=1487503075]
+layout_mode = 2
+
+[node name="LabelX" type="Label" parent="Panel/VBox/CoordRow" unique_id=1752281854]
+layout_mode = 2
+text = "X"
+
+[node name="XSpin" type="SpinBox" parent="Panel/VBox/CoordRow" unique_id=1227953907]
+layout_mode = 2
+min_value = -9999.0
+max_value = 9999.0
+
+[node name="LabelY" type="Label" parent="Panel/VBox/CoordRow" unique_id=1730560168]
+layout_mode = 2
+text = "Y"
+
+[node name="YSpin" type="SpinBox" parent="Panel/VBox/CoordRow" unique_id=712156422]
+layout_mode = 2
+min_value = -9999.0
+max_value = 9999.0
+
+[node name="LabelZ" type="Label" parent="Panel/VBox/CoordRow" unique_id=140575655]
+layout_mode = 2
+text = "Z"
+
+[node name="ZSpin" type="SpinBox" parent="Panel/VBox/CoordRow" unique_id=461049384]
+layout_mode = 2
+min_value = -9999.0
+max_value = 9999.0
+
+[node name="TravelButton" type="Button" parent="Panel/VBox" unique_id=1353923809]
+layout_mode = 2
+text = "TRAVEL"
+
+[node name="StatusLabel" type="Label" parent="Panel/VBox" unique_id=1159845164]
+layout_mode = 2
