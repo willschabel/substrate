@@ -14,9 +14,9 @@ Worn awe — ancient technology centuries old and showing it, cracked and tarnis
 ## Repo Layout
 
 ```
-unsure/
+substrate/  (repo root)
 ├── docs/                    # Design docs, roadmap, mood board
-└── swing/                   # Godot 4 project root
+└── substrate/               # Godot 4 project root
     ├── scenes/              # .tscn files
     ├── scripts/
     │   ├── autoloads/       # Singletons (GridCoord, Network)
@@ -90,7 +90,7 @@ unsure/
 
 ## Tooling
 
-The **Godot AI MCP plugin** is active in the editor. Use the MCP tools for all Godot editor operations (creating scenes, nodes, scripts, setting properties, managing materials, etc.) rather than editing `.tscn`/`.tres` files by hand. The plugin lives in `swing/addons/godot_ai/` — do not modify it.
+The **Godot AI MCP plugin** is active in the editor. Use the MCP tools for all Godot editor operations (creating scenes, nodes, scripts, setting properties, managing materials, etc.) rather than editing `.tscn`/`.tres` files by hand. The plugin lives in `substrate/addons/godot_ai/` — do not modify it.
 
 Always check `editor_state` at the start of a session to confirm the editor is ready before issuing editor commands.
 
