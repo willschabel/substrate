@@ -1,4 +1,4 @@
-# Godot (swing/ has its own .gitignore for .godot/ etc.)
+# Godot (substrate/ has its own .gitignore for .godot/ etc.)
 
 # Claude Code session data — local only, not project state
 .claude/
