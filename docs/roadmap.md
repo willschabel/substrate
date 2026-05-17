@@ -18,7 +18,7 @@ A futuristic/medieval 3D multiplayer game built around an infinite 3D grid. Ever
 
 | Constant | Value | Notes |
 |---|---|---|
-| Grid Unit | 10 × 10 × 4m (Godot units) | Footprint of a studio apartment, 4m ceiling |
+| Grid Unit | 12 × 12 × 5m (Godot units) | 10 × 10 × 4m interior + 1m stone walls each side + 0.5m floor/ceiling |
 | Max Party Size | 4 | One door per party member on host base |
 | Base Starting Size | 1 × 1 grid unit | Can be upgraded |
 | Safe Zones | Player markets, NPC markets | PvP/combat disabled |

@@ -36,7 +36,7 @@ substrate/  (repo root)
 
 | Constant | Value |
 |---|---|
-| Grid Unit | 10 × 10 × 4m (Godot units) — footprint of a studio apartment |
+| Grid Unit | 12 × 12 × 5m (Godot units) — 10 × 10 × 4m interior + 1m stone walls + 0.5m floor/ceiling |
 | Max Party Size | 4 |
 | Base Starting Size | 1 × 1 grid unit |
 
