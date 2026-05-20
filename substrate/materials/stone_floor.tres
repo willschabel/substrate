@@ -1,22 +1,19 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://duhcaee2fnx3p"]
 
-[ext_resource type="Texture2D" path="res://textures/base/stone_floor/basecolor_00001_.png" id="1_base"]
-[ext_resource type="Texture2D" path="res://textures/base/stone_floor/normal_00001_.png" id="2_normal"]
-[ext_resource type="Texture2D" path="res://textures/base/stone_floor/roughness_00001_.png" id="3_rough"]
-[ext_resource type="Texture2D" path="res://textures/base/stone_floor/height_00001_.png" id="4_height"]
+[ext_resource type="Texture2D" uid="uid://bs8avv04h2c12" path="res://textures/base/stone_floor/basecolor_00001_.png" id="1_base"]
+[ext_resource type="Texture2D" uid="uid://blceib30hxffb" path="res://textures/base/stone_floor/normal_00001_.png" id="2_normal"]
+[ext_resource type="Texture2D" uid="uid://dh25r16cfvli1" path="res://textures/base/stone_floor/roughness_00001_.png" id="3_rough"]
+[ext_resource type="Texture2D" uid="uid://c0qs3laaits27" path="res://textures/base/stone_floor/height_00001_.png" id="4_height"]
 
 [resource]
 albedo_texture = ExtResource("1_base")
+roughness_texture = ExtResource("3_rough")
 normal_enabled = true
 normal_texture = ExtResource("2_normal")
-roughness = 1.0
-roughness_texture = ExtResource("3_rough")
-roughness_texture_channel = 0
 heightmap_enabled = true
-heightmap_texture = ExtResource("4_height")
-heightmap_scale = 5.0
+heightmap_scale = 4.0
 heightmap_deep_parallax = true
 heightmap_min_layers = 8
 heightmap_max_layers = 32
+heightmap_texture = ExtResource("4_height")
 uv1_scale = Vector3(8, 8, 8)
-texture_repeat = true

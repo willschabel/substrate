@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4g2khh08q7qh"
-path="res://.godot/imported/texture_image_00001_.png-a5819497ed2995d64d390b14e36592da.ctex"
+uid="uid://cwghx8kshpvix"
+path="res://.godot/imported/metalness_00001_.png-0042c524d9f51e6fdba6f5ba064d6b76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/base/stone_floor/texture_image_00001_.png"
-dest_files=["res://.godot/imported/texture_image_00001_.png-a5819497ed2995d64d390b14e36592da.ctex"]
+source_file="res://textures/base/stone_wall/metalness_00001_.png"
+dest_files=["res://.godot/imported/metalness_00001_.png-0042c524d9f51e6fdba6f5ba064d6b76.ctex"]
 
 [params]
 

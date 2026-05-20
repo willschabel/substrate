@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://da613ern88c03"]
+
+[ext_resource type="Shader" uid="uid://bkjlfj0uh8p4t" path="res://shaders/triplanar_wall.gdshader" id="1_jural"]
+[ext_resource type="Texture2D" uid="uid://bckguevb46hwx" path="res://textures/base/stone_wall/height_00001_.png" id="2_nhfy3"]
+[ext_resource type="Texture2D" uid="uid://8e7ix37j28ct" path="res://textures/base/stone_wall/basecolor_00001_.png" id="2_w6b2j"]
+[ext_resource type="Texture2D" uid="uid://dt3f417fl1805" path="res://textures/base/stone_wall/normal_00001_.png" id="3_3pkp0"]
+[ext_resource type="Texture2D" uid="uid://bj67y78ayfxqa" path="res://textures/base/stone_wall/roughness_00001_.png" id="4_nhfy3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jural")
+shader_parameter/texture_albedo = ExtResource("2_w6b2j")
+shader_parameter/texture_normal = ExtResource("3_3pkp0")
+shader_parameter/texture_roughness = ExtResource("4_nhfy3")
+shader_parameter/texture_heightmap = ExtResource("2_nhfy3")
+shader_parameter/uv_scale = 0.25
+shader_parameter/triplanar_blend = 4.0
+shader_parameter/heightmap_scale = 0.0050000002375
+shader_parameter/normal_depth = 1.0

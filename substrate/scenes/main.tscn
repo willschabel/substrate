@@ -11,6 +11,7 @@ script = ExtResource("1_tbgi4")
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=723442945]
 transform = Transform3D(0.8660254, -0.35355338, 0.35355338, 0, 0.70710677, 0.70710677, -0.5, -0.6123724, 0.6123724, 0, 0, 0)
+light_energy = 0.4
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=469955465 instance=ExtResource("1_o5qli")]

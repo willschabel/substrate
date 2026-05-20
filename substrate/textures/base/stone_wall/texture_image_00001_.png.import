@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4g2khh08q7qh"
-path="res://.godot/imported/texture_image_00001_.png-a5819497ed2995d64d390b14e36592da.ctex"
+path="res://.godot/imported/texture_image_00001_.png-93165276b159f6654e49b5e41167836f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/base/stone_floor/texture_image_00001_.png"
-dest_files=["res://.godot/imported/texture_image_00001_.png-a5819497ed2995d64d390b14e36592da.ctex"]
+source_file="res://textures/base/stone_wall/texture_image_00001_.png"
+dest_files=["res://.godot/imported/texture_image_00001_.png-93165276b159f6654e49b5e41167836f.ctex"]
 
 [params]
 
