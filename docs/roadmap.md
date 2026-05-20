@@ -55,7 +55,7 @@ A futuristic/medieval 3D multiplayer game built around an infinite 3D grid. Ever
 - [x] Travel animation — base moves through grid, grid scrolls past windows
 - [x] Loading hook — travel animation masks async location load (everything else plugs into this seam)
 - [x] Lore camouflage system stub — other bases on the grid are invisible/incorporeal by design
-- [~] **Visual:** Base interior blockout — final geometry proportions, door placement, window placement (AI-assisted textures acceptable here, sets spatial expectations for all future base work)
+- [x] **Visual:** Base interior blockout — final geometry proportions, door placement, window placement (AI-assisted textures acceptable here, sets spatial expectations for all future base work)
 
 ---
 
