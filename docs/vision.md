@@ -208,13 +208,26 @@ Recipes are learned through blueprints. Blueprints can be found, bought, traded,
 ### Proven Proficiency & Instacraft
 This is the core differentiator of the profession system.
 
-As you accumulate successful crafts, you build **proven proficiency** at that tier. Once you've proven enough proficiency at a tier, crafts at that tier become **instacraft** — no mini-game, instant result. Your proven floor rises as your rank rises.
+As you accumulate successful crafts, you build **proven proficiency**. Proven proficiency always advances sequentially — starting at Untested, one rank at a time. You cannot skip ranks. Doing higher-tier crafts earns more points toward your next proven proficiency rank, but the progression is always linear: Untested → Raw → Apprentice → and so on.
 
-**Example:** A Master-rank smith has proven proficiency through Artisan. They can instacraft anything up to Artisan tier — bulk-crafting components for a trade order takes no time. But Expert and Master tier work still requires the skill check, because that's where their active challenge lives.
+**Instacraft rule: you can instacraft everything up to 2 ranks below your proven proficiency rank.**
 
-- Instacraft reflects *demonstrated mastery*, not just rank — you still have to earn it at each tier through repetition
-- A Legendary player who skipped grinding lower tiers (by always punching above their rank) may have gaps in their instacraft floor
-- The system rewards both breadth (grinding every tier) and depth (pushing high and coming back down)
+| Proven Proficiency | Instacraft Unlocked |
+|---|---|
+| Untested / Raw | None |
+| Apprentice | Untested |
+| Journeyman | Untested → Raw |
+| Artisan | Untested → Apprentice |
+| Expert | Untested → Journeyman |
+| Veteran | Untested → Artisan |
+| Master | Untested → Expert |
+| Grandmaster | Untested → Veteran |
+| Legendary | Untested → Master |
+
+**Example:** A Journeyman-proven smith who has been doing Expert crafts for bonus points reaches Veteran proven proficiency. They can now instacraft anything up to Artisan tier. Grandmaster and Legendary tier always require the skill check, even for a Legendary-proven player — there is always a permanent challenge floor.
+
+- Doing high-tier crafts rewards you with faster proven proficiency progression, not rank skipping
+- The 2-rank buffer means you're always doing skill checks at your frontier — the thing you haven't yet mastered
 
 ### Mini-Game Philosophy
 Each profession's skill check should feel like a completely different game:
