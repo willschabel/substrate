@@ -78,7 +78,7 @@ The AI's corruption explains the world's state: locations poorly indexed, mainte
 The AI is still present. It watches. It hasn't found its new directive, but it has found something like curiosity.
 
 ### The AI's Presence
-Players will never communicate with the AI directly — not in the first release, possibly never. But they should occasionally feel watched over. Rare, ambiguous moments that could be coincidence but feel like something more:
+Players will never communicate with the AI directly *(locked for first release)* — not in the first release, possibly never. But they should occasionally feel watched over. Rare, ambiguous moments that could be coincidence but feel like something more:
 
 - An enemy that hesitates at exactly the wrong moment for it, the right moment for you
 - A door that shouldn't be open, is
@@ -145,7 +145,7 @@ The base is the game's heart — the first thing you see, the place you return t
 ## Combat
 
 ### Perspective
-**First person — the entire game.** Base, travel, combat, professions, everything. No perspective switching.
+**First person — the entire game.** *(locked)* Base, travel, combat, professions, everything. No perspective switching.
 
 ### Philosophy
 **Slow, methodical, and lethal.** The pacing is deliberate — not frantic — but time-to-kill is low. A few clean hits ends a fight. Patience is enforced by consequence: getting hit is dangerous, committing to an attack animation is a real decision, and the danger of the situation is what makes players careful — not a resource bar.
@@ -158,7 +158,7 @@ All stats are **purely gear-based**. No character levelling — a player gets st
 - **Health pool** — determined by gear
 - **Shield** — a separate buffer that absorbs damage before health; determined by gear
 - **Damage** — determined by the weapon equipped
-- No stamina system — weapon recovery animations and low TTK enforce deliberate play without a resource meter
+- No stamina system *(locked)* — weapon recovery animations and low TTK enforce deliberate play without a resource meter
 
 ### HUD
 - Health bar — visible
@@ -172,9 +172,9 @@ All stats are **purely gear-based**. No character levelling — a player gets st
 **PvP (player vs player):** TTK is meaningfully higher than PvE — enough that skill expression has room to show, reads and feints matter, and a fight isn't decided by who swung first. Fights don't drag. The difference should feel like the other player is dangerous and capable, not like a health sponge.
 
 ### Key Design Decisions
-- **No classes.** Players build archetypes through weapon choice
-- **Low TTK** — non-negotiable, tuned early and protected throughout development
-- **No stamina system** — deliberate play comes from danger and weapon recovery, not resource management
+- **No classes.** *(locked)* Players build archetypes through weapon choice
+- **Low TTK** *(locked)* — non-negotiable, tuned early and protected throughout development
+- **No stamina system** *(locked)* — deliberate play comes from danger and weapon recovery, not resource management
 - **First person melee and ranged** — both must feel physically grounded; weapon weight and swing arc must read clearly in first person
 - Hitstun, dodge windows, impact weight — combat feel is the most critical thing to get right and the hardest in first person
 - PvP exists but is **opt-in** (dueling in bases requires both players to accept; open PvP only in designated zones)
@@ -322,7 +322,7 @@ Each profession's skill check should feel like a completely different game:
 
 ## Session Loop
 
-### Death & Extraction — Extraction Shooter Rules
+### Death & Extraction — Extraction Shooter Rules *(locked)*
 If you die inside a location, **you lose everything you brought in**. Your gear, your materials, your crafted items — gone. The only things safe are what you left in your base.
 
 This is the tension engine of every run. Deciding what to bring is a real decision. Committing to a location is a real commitment. The base is not just a home — it's a vault.

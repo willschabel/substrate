@@ -45,6 +45,8 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 - [x] GUT testing framework — install addon, create `res://tests/` directory, write tests for `GridCoord`
 - [x] **Visual:** Mood board / style reference — lock the futuristic-medieval aesthetic before building anything permanent (AI tools for concepting)
 
+**Phase complete when:** All items checked and architecture holds under a basic scene load with no errors.
+
 ---
 
 ## Phase 1 — The Base
@@ -56,6 +58,8 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 - [x] Loading hook — travel animation masks async location load (everything else plugs into this seam)
 - [x] Lore camouflage system stub — other bases on the grid are invisible/incorporeal by design
 - [x] **Visual:** Base interior blockout — final geometry proportions, door placement, window placement (AI-assisted textures acceptable here, sets spatial expectations for all future base work)
+
+**Phase complete when:** User confirms travel animation, door states, and navigation UI feel right in a live run.
 
 ---
 
@@ -76,6 +80,8 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 - [ ] Base indexing — location visited is recorded with coordinates, type, and observed conditions; foundation for the player's personal grid atlas
 - [ ] **Visual:** Hit feedback — impact effects, hitstun flash, basic enemy hurt animation (functional, not decorative; combat feel depends on these)
 
+**Phase complete when:** User confirms combat *feel* is right — not just functional, but fun and weighty. TTK, dodge windows, and hit feedback must all be confirmed before moving on. This is the hardest phase to get right.
+
 ---
 
 ## Phase 3 — First Profession (Smithing)
@@ -92,6 +98,8 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 - [ ] Rank 4–6 mini-games (Journeyman/Artisan/Expert) — complexity increase; more steps, tighter windows
 - [ ] Crafted weapons have real stats and are equippable
 
+**Phase complete when:** User confirms the full smithing loop end-to-end — blueprint, mini-game, craft, equip, rank progression, and instacraft unlock all working in a live run.
+
 ---
 
 ## Phase 4 — Multiplayer
@@ -103,6 +111,8 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 - [ ] Player body model placeholder — other players see your character in the world; first person locally, third person to everyone else
 - [ ] Character sync — position, animation state, combat actions
 - [ ] Hybrid authority — loot rolls and economy writes routed through lightweight server, not host client
+
+**Phase complete when:** Two players can party up, travel together as docked bases, enter a location, fight, loot, and extract — all confirmed working in a live multiplayer run.
 
 ---
 
@@ -117,6 +127,8 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 - [ ] Player contracts — post commissions for crafted items, material bounties, retrieval jobs at player markets
 - [ ] Base indexing UI — player can review their indexed grid atlas, filter by location type
 
+**Phase complete when:** User can complete an NPC quest, fill a player contract, and conduct a player-to-player trade — all confirmed in a live run.
+
 ---
 
 ## Phase 6 — Remaining Professions
@@ -127,6 +139,8 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 - [ ] Enchanting — gear augmentation, ancient tech enhancements
 - [ ] Woodworking — base components, bows, hafts, furniture
 - [ ] Rank 7–10 mini-games for smithing (Veteran/Master/Grandmaster/Legendary) — peak complexity
+
+**Phase complete when:** All 5 professions playable with distinct mini-games; user confirms each feels different and the high-rank difficulty is genuinely challenging.
 
 ---
 
