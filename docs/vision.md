@@ -28,6 +28,34 @@ The game is built in **Godot 4**, targeting **PC (Steam)**.
 
 ---
 
+## How You Play
+
+### The Base as a Vehicle
+The player's base is not a static hub — it is a **grid elevator**, a vehicle that travels the infinite grid. The player navigates from inside it. Entering coordinates on the navigation controller sets a destination; the base physically moves through the grid to get there, always animated, never a fade or fast travel. Watching the grid scroll past the windows is a core part of the experience.
+
+### Arriving at a Location
+When the base arrives at a destination, its **main door locks into the destination's entry door**. This is the one connection between the base and the location — you enter and exit through your main door. The main door is always reserved for location docking.
+
+### Multiplayer — Bases Lock Together
+When a player invites someone to their party, the invited player's base **travels the grid and docks to one of the host's side doors** (the host has 3 side doors available for guests). The two bases are now physically locked together and move as a single unit. The host's main door remains the entry/exit to locations.
+
+This gives a natural maximum party size of **4**: the host plus 3 guests, one per side door.
+
+When the party travels, all docked bases move together. When they arrive, the host's main door locks to the location — the guests enter through their door into the host's base, then through the main door into the location.
+
+### Travel Is Always Animated
+There is no fast travel, no loading screen fade, no teleport. Every journey through the grid is a physical movement with a visible animation. This is a design non-negotiable — the travel experience is part of the game, not a skippable inconvenience.
+
+### Loading Strategy During Travel
+Travel animation serves a second purpose: covering location loading.
+
+- **Nearby locations** (within a proximity radius) are already loaded before travel begins — no wait on arrival.
+- **Distant locations** begin loading as soon as the destination is entered into the navigation controller. The travel animation runs concurrently with the load.
+- **If loading isn't complete on arrival**, the main door simply stays sealed until it is. No jarring transition — the door opening is gated on readiness.
+- The radius-based preloading means that if a player is already adjacent to a location (without being docked), they are effectively already loaded in.
+
+---
+
 ## The World
 
 ### The Grid
