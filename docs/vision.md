@@ -99,15 +99,28 @@ The base is the game's heart — the first thing you see, the place you return t
 
 ## Combat
 
+### Perspective
+**First person.** *(Whether this applies to the full game or only combat is TBD — see Open Questions.)*
+
 ### Philosophy
-**Dark Souls meets arena shooter.** Fast-paced, skill-dependent, punishing but fair. Movement matters as much as stats.
+**Slow, methodical, and lethal.** The pacing is deliberate — not frantic — but time-to-kill is low. A few clean hits ends a fight. This combination enforces the patience: you move carefully *because* getting caught is fatal, not in spite of it. The closest reference point is Escape from Tarkov's tension, applied to a fantasy melee/ranged context.
+
+Every encounter should feel like it mattered. There's no tanking hits and recovering. Spacing, timing, and reading enemies are what keep you alive — not a health pool.
 
 ### Key Design Decisions
 - **No classes.** Players build archetypes through weapon choice and skill investment
-- Melee and ranged both viable — neither dominant
-- Stamina system — spamming is punished, timing is rewarded
-- Hitstun, dodge windows, weight to impacts — combat feel is the most critical thing to get right
+- **Low TTK** — a few hits kills; this is non-negotiable and should be tuned early and protected
+- **Stamina system** — spamming attacks or blocks is punished; every action has a cost
+- **First person melee and ranged** — both must feel physically grounded; weapon weight and swing arc must read clearly in first person
+- Hitstun, dodge windows, impact weight — combat feel is the most critical thing to get right and the hardest in first person
 - PvP exists but is **opt-in** (dueling in bases requires both players to accept; open PvP only in designated zones)
+
+### Weapon Variety
+Multiple weapon types, each with a distinct feel and rhythm — not just stat differences. Examples (not exhaustive):
+- Slow heavy weapons (greatswords, mauls) — high damage per hit, punishing commitment
+- Fast light weapons (daggers, short swords) — lower damage, higher tempo, more forgiving stamina
+- Ranged (bows, crossbows, ancient tech?) — range advantage, vulnerable up close
+- The weapon *is* your archetype — no class system means weapon choice defines your playstyle
 
 ### Safe Zones
 - Player markets, NPC markets: PvP/combat disabled
@@ -195,6 +208,7 @@ Each will have a unique mini-game mechanic — not reskins of smithing, genuinel
 
 *Things not yet decided, to be resolved through conversation and design.*
 
+- **First person scope** — is the entire game first person (base, travel, everything), or only combat? First person base exploration would deepen immersion; third person base view would make the space more readable. Needs a decision before significant environment art is locked.
 - What does the grid's mystery ultimately reveal? (Keep vague until lore is locked)
 - How much base customisation at launch vs. expansion? (Current plan: Phase 7+)
 - Procedural location generation — how much, how soon?
