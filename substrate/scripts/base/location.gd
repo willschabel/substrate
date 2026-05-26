@@ -9,8 +9,10 @@ enum Type {
 	GUILD_HALL,
 	BASE,
 	OPEN_WORLD,
+	# Phase 2: add MISSION and PVP_ZONE (see vision.md Grid as World Structure)
 }
 
+# BASE is safe because dueling requires mutual consent — it is never open PvP.
 const SAFE_TYPES := [Type.SAFE, Type.MARKET_NPC, Type.MARKET_PLAYER, Type.GUILD_HALL, Type.BASE]
 
 @export var location_type: Type = Type.COMBAT
