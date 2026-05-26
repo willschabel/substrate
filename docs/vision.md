@@ -266,16 +266,69 @@ Each profession's skill check should feel like a completely different game:
 
 ---
 
+## Session Loop
+
+### Death & Extraction — Extraction Shooter Rules
+If you die inside a location, **you lose everything you brought in**. Your gear, your materials, your crafted items — gone. The only things safe are what you left in your base.
+
+This is the tension engine of every run. Deciding what to bring is a real decision. Committing to a location is a real commitment. The base is not just a home — it's a vault.
+
+Extraction is implicit: get back to your base and leave. The base is your extraction vehicle. There is no separate "extract" button — you navigate to your base door, travel away, and you're out.
+
+### What Drives Destination Choice
+Players will have different goals and the grid accommodates all of them. There is no single correct session path.
+
+**Crafting & economy players** gravitate toward:
+- Player markets — buy, sell, fill contracts
+- NPC markets — quests, vendor stock, rare blueprints
+- Material-rich combat locations to fund their crafting
+
+**PvP players** gravitate toward:
+- PvP-enabled grid locations where other players are targets
+- High-risk high-reward areas where the danger is other people
+
+**PvE players** gravitate toward:
+- PvE-focused locations — structured enemy encounters, loot runs
+- Mission locations with defined objectives and rules
+
+**The grid is the content.** Players explore, their base indexes what they find, and they develop a personal map of where to go for what they need.
+
+### Base Indexing
+As a player travels the grid their base **indexes and remembers every location they encounter** — coordinates, location type, what was found there, any rules or conditions observed. Over time this becomes a personal atlas. A veteran player's indexed grid is a valuable resource — they know where things are.
+
+This also means exploration has intrinsic value beyond loot. Finding a new location type or a well-stocked market is progress even on a run where you found nothing else.
+
+### Objectives & Contracts
+Two systems drive goal-directed play:
+
+**NPC Quests** — NPCs at market locations issue quests: retrieve an item, clear a location, deliver something. These give direction for players who want it without forcing it on those who don't.
+
+**Player Contracts** — Players can post contracts at player markets: commissions for crafted items, bounties for materials, retrieval jobs. The economy and the session loop are the same system — a crafter's output is another player's run objective.
+
+### Location Rules & Session Shape
+Each location is different. Some have their own rules that override normal player agency:
+
+- **Open world locations** — player decides when they're done and leaves on their own terms
+- **Mission locations** — structured, with defined objectives. Some may lock players in until a condition is met (an event that must be completed before the exit unseals, etc.)
+- **Time cycles** — locations can have their own day/night cycles, weather, atmospheric conditions. A location that's safe at day may not be at night
+- **Per-location rules** — PvP enabled/disabled, extraction conditions, environmental hazards, time limits — each location declares its own terms
+
+The diversity of location rules means no two runs feel identical even at the same coordinates.
+
+---
+
 ## Grid as World Structure
 
-| Location Type | Description |
-|---|---|
-| Player Base | 1+ grid units, mobile, owned by player |
-| Combat Arena | Static handcrafted or procedural, enemies + loot |
-| NPC Market | Non-combat, vendor NPCs |
-| Player Market | Non-combat, player-run economy |
-| Guild Hall | Multi-base docking location, member management |
-| (more TBD) | |
+| Location Type | PvP | Rules | Description |
+|---|---|---|---|
+| Player Base | Duel only | Owner sets terms | Mobile, owned, home vault |
+| Open World Location | Varies | Player-driven exit | Exploration, loot, open-ended |
+| Mission Location | Varies | Location-defined | Structured objectives, can lock players in |
+| NPC Market | Disabled | Safe zone | Vendor NPCs, quests, blueprints |
+| Player Market | Disabled | Safe zone | Player-run economy, contracts |
+| Guild Hall | Disabled | Member rules | Multi-base docking, organisation hub |
+| PvP Zone | Enabled | Location-defined | High-risk, players are threats |
+| (more TBD) | | | |
 
 ---
 
@@ -305,4 +358,3 @@ Each profession's skill check should feel like a completely different game:
 - Procedural location generation — how much, how soon?
 - Skill system specifics — how do non-weapon skills work?
 - Enemy design philosophy — all ancient constructs, or do other inhabitants exist?
-- What does a "day" look like for a player? What's the natural session loop?
