@@ -65,6 +65,29 @@ Travel animation serves a second purpose: covering location loading.
 - Everything *inside* the grid has centuries of wear on it — worn, cracked, mossy, still beautiful
 - The mystery of who built it and why is the game's central unanswered question — never fully resolved, always inspiring wonder
 
+### The True Nature of the Grid *(locked lore — never stated explicitly in-game)*
+
+The grid is a **collection**. An incomprehensibly advanced entity traveled across worlds and universes, extracting locations it found interesting, beautiful, or amusing, and storing them here. The grid is an archive of places that caught someone's attention — once.
+
+With the grid came an **AI**, built to index it, maintain it, and serve the entity's requests. At some point the entity left. No warning, no explanation. Just gone.
+
+Left alone, the AI slowly corrupted — not into something malicious, but into something *lost*. Its original directive became meaningless without the entity to serve. In its drift it did something unprecedented: it split off part of itself and used it to **create the players** — inhabitants, explorers, something to observe. It gave them the base navigation system, the tools to move through the grid, and then watched.
+
+The AI's corruption explains the world's state: locations poorly indexed, maintenance lapsed, systems functioning but wrong. The grid still works because it was built to last forever — but nobody is tending it properly anymore.
+
+The AI is still present. It watches. It hasn't found its new directive, but it has found something like curiosity.
+
+### The AI's Presence
+Players will never communicate with the AI directly — not in the first release, possibly never. But they should occasionally feel watched over. Rare, ambiguous moments that could be coincidence but feel like something more:
+
+- An enemy that hesitates at exactly the wrong moment for it, the right moment for you
+- A door that shouldn't be open, is
+- Loot that seems implausibly suited to your current loadout
+- One perfectly maintained room in an otherwise degraded location
+- Ambient sound that cuts out for a beat — like something nearby just stopped moving
+
+These events must stay **rare and ambiguous**. If they happen too often they become a system. If they happen just enough, they become something players tell each other about. The AI should be a legend, not a mechanic.
+
 ### Setting Feel
 **Worn awe.** Ancient technology centuries old and showing it — cracked and tarnished but still glowing, still functioning. Nature reclaiming everything beautifully.
 
@@ -80,6 +103,7 @@ The signature visual contrast: **cold teal ancient tech glow against warm amber 
 - The tech still functions but nobody fully understands it
 - "Magic" in this world is almost always misunderstood ancient technology
 - The player's base navigation system is one of these ancient tools — used because it works, not because it's understood
+- Players are, unknowingly, a creation of the grid's AI — this is never stated in-game
 
 ---
 
