@@ -65,6 +65,7 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 
 ## Phase 2 — First Combat Location
 *Establish the combat feel. This is the most important phase for fun.*
+*Read before starting: vision.md — **Combat**, **Inventory**, **The Player's Base**, and the **Enemies** section under The World.*
 
 - [ ] `Location` base class — extend Phase 0 base with entry/exit door binding, location type declaration, per-location rule flags (PvP on/off, mission vs open world)
 - [ ] One static handcrafted open-world location — thematically coherent constructs reflecting what the location once was (see vision doc enemy lore)
@@ -86,6 +87,7 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 
 ## Phase 3 — First Profession (Smithing)
 *Prove the profession system concept end-to-end — ranks, proven proficiency, instacraft, blueprints.*
+*Read before starting: vision.md — **Professions** (entire section).*
 
 - [ ] Smithing workstation node (placeable in base)
 - [ ] Blueprint system — blueprints unlock recipes; no rank gate on attempting a craft, only on outcome and proficiency gain rate
@@ -104,6 +106,7 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 
 ## Phase 4 — Multiplayer
 *Layer networking onto the already-working single-player loop.*
+*Read before starting: vision.md — **Multiplayer** and **How You Play** (docking and travel sections).*
 
 - [ ] GodotSteam integration — lobby, invite, join
 - [ ] Party system — leader designation, 4-player max
@@ -117,6 +120,7 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 ---
 
 ## Phase 5 — Economy & Objectives Skeleton
+*Read before starting: vision.md — **Economy**, **Session Loop** (Objectives & Contracts), and **Grid as World Structure**.*
 
 - [ ] Currency system
 - [ ] Loot rarity tiers (feeds into crafting material system)
@@ -133,6 +137,7 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 
 ## Phase 6 — Remaining Professions
 *Each profession needs a unique mini-game mechanic — not a smithing reskin.*
+*Read before starting: vision.md — **Professions** (Mini-Game Philosophy and the profession table).*
 
 - [ ] Alchemy — consumables, buffs, poisons
 - [ ] Cooking — food buffs, stamina recovery items
@@ -146,6 +151,7 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 
 ## Phase 7 — Art & Polish Pass
 *Do this before Steam release. Systems are locked — now make it look like the game it is.*
+*Read before starting: vision.md — **Setting Feel** and the **Enemies** section (for construct visual direction). Also read docs/setting.md and docs/prompt_guide.md in full.*
 
 **Production assets (self-made + AI-assisted):**
 - [ ] Final first-person viewmodel — arms, hands, weapon animations (attack, block, dodge, idle)
@@ -167,6 +173,7 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 
 ## Phase 8 — PvP & Expansion Layer
 *Core game content built post-polish. PvP zones are a primary playstyle path, not optional extras.*
+*Read before starting: vision.md — **Session Loop** (What Drives Destination Choice), **Grid as World Structure**, and **Combat** (PvP TTK section).*
 
 - [ ] PvP zones — grid locations where players are threats; high-risk high-reward; loot-on-kill
 - [ ] Mission location type — structured objectives, can lock players in until completion conditions met; per-location time cycles and rules
