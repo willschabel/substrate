@@ -100,12 +100,18 @@ The base is the game's heart — the first thing you see, the place you return t
 ## Combat
 
 ### Perspective
-**First person.** *(Whether this applies to the full game or only combat is TBD — see Open Questions.)*
+**First person — the entire game.** Base, travel, combat, professions, everything. No perspective switching.
 
 ### Philosophy
 **Slow, methodical, and lethal.** The pacing is deliberate — not frantic — but time-to-kill is low. A few clean hits ends a fight. This combination enforces the patience: you move carefully *because* getting caught is fatal, not in spite of it. The closest reference point is Escape from Tarkov's tension, applied to a fantasy melee/ranged context.
 
 Every encounter should feel like it mattered. There's no tanking hits and recovering. Spacing, timing, and reading enemies are what keep you alive — not a health pool.
+
+### TTK by Context
+
+**PvE (players vs NPCs):** TTK is low in both directions. NPCs die fast — but they also kill fast. Encounters are short and decisive. The design intent is that players must learn each enemy type: its tells, its range, its attack windows. An unknown enemy is a genuine threat. A learned enemy is manageable but never trivial.
+
+**PvP (player vs player):** TTK is meaningfully higher than PvE — enough that skill expression has room to show, reads and feints matter, and a fight isn't decided by who swung first. But it's not obnoxiously high — fights don't drag. The difference should feel like the other player is dangerous and capable, not like a health sponge.
 
 ### Key Design Decisions
 - **No classes.** Players build archetypes through weapon choice and skill investment
@@ -208,7 +214,6 @@ Each will have a unique mini-game mechanic — not reskins of smithing, genuinel
 
 *Things not yet decided, to be resolved through conversation and design.*
 
-- **First person scope** — is the entire game first person (base, travel, everything), or only combat? First person base exploration would deepen immersion; third person base view would make the space more readable. Needs a decision before significant environment art is locked.
 - What does the grid's mystery ultimately reveal? (Keep vague until lore is locked)
 - How much base customisation at launch vs. expansion? (Current plan: Phase 7+)
 - Procedural location generation — how much, how soon?
