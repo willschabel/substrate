@@ -148,20 +148,33 @@ The base is the game's heart — the first thing you see, the place you return t
 **First person — the entire game.** Base, travel, combat, professions, everything. No perspective switching.
 
 ### Philosophy
-**Slow, methodical, and lethal.** The pacing is deliberate — not frantic — but time-to-kill is low. A few clean hits ends a fight. This combination enforces the patience: you move carefully *because* getting caught is fatal, not in spite of it. The closest reference point is Escape from Tarkov's tension, applied to a fantasy melee/ranged context.
+**Slow, methodical, and lethal.** The pacing is deliberate — not frantic — but time-to-kill is low. A few clean hits ends a fight. Patience is enforced by consequence: getting hit is dangerous, committing to an attack animation is a real decision, and the danger of the situation is what makes players careful — not a resource bar.
 
-Every encounter should feel like it mattered. There's no tanking hits and recovering. Spacing, timing, and reading enemies are what keep you alive — not a health pool.
+Every encounter should feel like it mattered. Spacing, timing, and reading enemies are what keep you alive.
+
+### Player Stats
+All stats are **purely gear-based**. No character levelling — a player gets stronger by getting better gear, not by accumulating XP.
+
+- **Health pool** — determined by gear
+- **Shield** — a separate buffer that absorbs damage before health; determined by gear
+- **Damage** — determined by the weapon equipped
+- No stamina system — weapon recovery animations and low TTK enforce deliberate play without a resource meter
+
+### HUD
+- Health bar — visible
+- Shield bar — visible
+- Nothing else — no stamina bar, no minimap, no floating markers
 
 ### TTK by Context
 
-**PvE (players vs NPCs):** TTK is low in both directions. NPCs die fast — but they also kill fast. Encounters are short and decisive. The design intent is that players must learn each enemy type: its tells, its range, its attack windows. An unknown enemy is a genuine threat. A learned enemy is manageable but never trivial.
+**PvE (players vs NPCs):** TTK is low in both directions. NPCs die fast — but they also kill fast. Players must learn each enemy type: its tells, its range, its attack windows. An unknown enemy is a genuine threat. A learned enemy is manageable but never trivial.
 
-**PvP (player vs player):** TTK is meaningfully higher than PvE — enough that skill expression has room to show, reads and feints matter, and a fight isn't decided by who swung first. But it's not obnoxiously high — fights don't drag. The difference should feel like the other player is dangerous and capable, not like a health sponge.
+**PvP (player vs player):** TTK is meaningfully higher than PvE — enough that skill expression has room to show, reads and feints matter, and a fight isn't decided by who swung first. Fights don't drag. The difference should feel like the other player is dangerous and capable, not like a health sponge.
 
 ### Key Design Decisions
-- **No classes.** Players build archetypes through weapon choice and skill investment
-- **Low TTK** — a few hits kills; this is non-negotiable and should be tuned early and protected
-- **Stamina system** — spamming attacks or blocks is punished; every action has a cost
+- **No classes.** Players build archetypes through weapon choice
+- **Low TTK** — non-negotiable, tuned early and protected throughout development
+- **No stamina system** — deliberate play comes from danger and weapon recovery, not resource management
 - **First person melee and ranged** — both must feel physically grounded; weapon weight and swing arc must read clearly in first person
 - Hitstun, dodge windows, impact weight — combat feel is the most critical thing to get right and the hardest in first person
 - PvP exists but is **opt-in** (dueling in bases requires both players to accept; open PvP only in designated zones)
@@ -169,7 +182,7 @@ Every encounter should feel like it mattered. There's no tanking hits and recove
 ### Weapon Variety
 Multiple weapon types, each with a distinct feel and rhythm — not just stat differences. Examples (not exhaustive):
 - Slow heavy weapons (greatswords, mauls) — high damage per hit, punishing commitment
-- Fast light weapons (daggers, short swords) — lower damage, higher tempo, more forgiving stamina
+- Fast light weapons (daggers, short swords) — lower damage, higher tempo
 - Ranged (bows, crossbows, ancient tech?) — range advantage, vulnerable up close
 - The weapon *is* your archetype — no class system means weapon choice defines your playstyle
 
@@ -177,6 +190,26 @@ Multiple weapon types, each with a distinct feel and rhythm — not just stat di
 - Player markets, NPC markets: PvP/combat disabled
 - Player bases: dueling allowed with mutual consent
 - Everything else: context-dependent (to be designed per location type)
+
+---
+
+## Inventory
+
+### Structure
+Slot-based. Each item occupies one slot. No weight system.
+
+### Item Point Value
+Every item has a **point value** determined by its rarity. This value is used by two systems:
+
+**1. Location entry requirements** — some locations restrict who can enter based on total inventory point value:
+- **Point minimum** — you must bring at least X points of gear to enter (high-tier locations requiring decent equipment)
+- **Point maximum** — you cannot bring more than X points to enter (beginner or normalised locations; leaves your best gear at home)
+- **Point range** — entry requires a value between X and Y (PvP zones where gear parity matters)
+
+**2. Extraction caps** — some locations limit how many points of loot you can leave with. Others have no cap. Knowing which is which is part of the game's knowledge layer.
+
+### Extraction Interaction
+Extraction rules (lose everything on death) apply to all items in inventory. The point system creates decisions: a location with an extraction cap forces you to choose which loot is worth taking. A location with no cap rewards thorough clearing.
 
 ---
 

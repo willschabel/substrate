@@ -66,8 +66,11 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 - [ ] One static handcrafted open-world location — thematically coherent constructs reflecting what the location once was (see vision doc enemy lore)
 - [ ] Basic enemy AI — patrol, aggro, melee attack; enemies are corrupted maintenance constructs, not generic monsters
 - [ ] First-person viewmodel — arms and weapon only; no third-person body needed
-- [ ] Melee combat — one weapon type, hit detection, stamina, hitstun. Slow and methodical. Get the feel right here.
+- [ ] Melee combat — one weapon type, hit detection, hitstun, weapon recovery animations. No stamina system. Slow and methodical feel comes from low TTK and attack commitment, not a resource bar. Get the feel right here.
 - [ ] Ranged combat stub — one ranged weapon
+- [ ] Player stats — gear-based health pool, shield (absorbs damage before health), weapon damage; no character levelling
+- [ ] HUD — health bar and shield bar only
+- [ ] Slot-based inventory — items have rarity point values; foundation for location entry requirements and extraction caps
 - [ ] Extraction rules — losing all carried items on death; loot drop + pickup
 - [ ] Return travel back to base
 - [ ] Base indexing — location visited is recorded with coordinates, type, and observed conditions; foundation for the player's personal grid atlas
@@ -171,7 +174,7 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 
 ## Design Pillars
 
-- **Slow, methodical, lethal** — first-person combat where patience is enforced by consequence; low PvE TTK in both directions, higher PvP TTK to allow skill expression
+- **Slow, methodical, lethal** — first-person combat with no stamina system; patience is enforced by low TTK and weapon recovery commitment, not resource bars; low PvE TTK in both directions, higher PvP TTK to allow skill expression
 - **No classes** — players build their own archetype through weapon choice and skill investment
 - **Professions have real depth** — skill checks get genuinely harder as you rank up; proven proficiency earns instacraft, not rank alone
 - **Grid is the world** — every location, base, market, and guild hall is a coordinate; exploration builds knowledge, and knowledge is the meta-game
