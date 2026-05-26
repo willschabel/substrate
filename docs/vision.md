@@ -161,17 +161,66 @@ Multiple weapon types, each with a distinct feel and rhythm — not just stat di
 
 ## Professions
 
-Professions are **not** passive number increases. Each profession has a real mini-game skill check that gets harder and more complex as you level — not just bigger numbers, but genuinely different tasks requiring more skill.
+Professions are **not** passive number increases. Each has a real mini-game skill check that becomes genuinely more complex as you advance — more steps, tighter windows, new mechanics, pattern recognition under pressure. Not just bigger numbers. Actual skill.
 
-### Smithing (Phase 3 — first profession)
-- Smithing workstation, placeable in your base
-- Level 1: timing-based forging mini-game
-- Level 2–3+: complexity increases (more steps, tighter windows, new mechanics)
-- Crafted weapons have real stats and are equippable
-- Profession XP and level system scaffolded to levels 1–5 from the start
+Each profession requires a dedicated **workstation** placed in your base. Your base layout reflects your profession choices.
 
-### Future Professions (Phase 7+)
-Each will have a unique mini-game mechanic — not reskins of smithing, genuinely different skill expression.
+Profession output covers the full range: gear, consumables, buffs, base upgrades, and tradeable items.
+
+### Planned Professions
+Each has a unique mini-game mechanic — not reskins of each other:
+
+| Profession | Station | Primary Output |
+|---|---|---|
+| Smithing | Forge | Weapons, armour, metal components |
+| Alchemy | Alchemist's bench | Consumables, buffs, poisons |
+| Cooking | Hearth | Food buffs, stamina recovery items |
+| Enchanting | Enchanting table | Gear augmentation, ancient tech enhancements |
+| Woodworking | Workbench | Base components, bows, hafts, furniture |
+
+### Rank Structure
+
+Ten ranks, exponential gap between each. Early ranks fall quickly — the jump from Veteran to Master is enormous. Legendary is genuinely rare; most players will cap at Grandmaster or below for their primary profession.
+
+| # | Rank |
+|---|---|
+| 1 | Untested |
+| 2 | Raw |
+| 3 | Apprentice |
+| 4 | Journeyman |
+| 5 | Artisan |
+| 6 | Expert |
+| 7 | Veteran |
+| 8 | Master |
+| 9 | Grandmaster |
+| 10 | Legendary |
+
+### Advancing Ranks
+- Rank advances through **successful crafts** — each rank requires exponentially more successes than the last
+- **Failures hurt progression** — bad crafts push you back
+- **Deranking is possible** — a bad streak can cost you a rank
+- **Crafting above your current rank gives bonus points** — high risk, high reward; a Journeyman who completes an Expert recipe earns significantly more than doing Journeyman work
+- There are no gates on attempting any recipe — anyone can try a Legendary-tier craft if they have the blueprint and materials
+
+### Blueprint System
+Recipes are learned through blueprints. Blueprints can be found, bought, traded, or earned. Having a blueprint is the only requirement to attempt a craft — rank is not a gate, only a modifier on outcome quality and proficiency gain rate.
+
+### Proven Proficiency & Instacraft
+This is the core differentiator of the profession system.
+
+As you accumulate successful crafts, you build **proven proficiency** at that tier. Once you've proven enough proficiency at a tier, crafts at that tier become **instacraft** — no mini-game, instant result. Your proven floor rises as your rank rises.
+
+**Example:** A Master-rank smith has proven proficiency through Artisan. They can instacraft anything up to Artisan tier — bulk-crafting components for a trade order takes no time. But Expert and Master tier work still requires the skill check, because that's where their active challenge lives.
+
+- Instacraft reflects *demonstrated mastery*, not just rank — you still have to earn it at each tier through repetition
+- A Legendary player who skipped grinding lower tiers (by always punching above their rank) may have gaps in their instacraft floor
+- The system rewards both breadth (grinding every tier) and depth (pushing high and coming back down)
+
+### Mini-Game Philosophy
+Each profession's skill check should feel like a completely different game:
+- All of these axes are valid and should be spread across professions: tighter timing windows, sequential steps, pattern recognition under pressure, spatial puzzles, rhythm, resource management within the craft
+- Difficulty at Legendary tier should feel genuinely hard — not unfair, but demanding real attention and skill
+- The mini-game is the profession. It should be something players want to get good at, not a gate they want to skip.
 
 ---
 
