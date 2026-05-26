@@ -86,7 +86,7 @@ Players will never communicate with the AI directly — not in the first release
 - One perfectly maintained room in an otherwise degraded location
 - Ambient sound that cuts out for a beat — like something nearby just stopped moving
 
-These events must stay **rare and ambiguous**. If they happen too often they become a system. If they happen just enough, they become something players tell each other about. The AI should be a legend, not a mechanic.
+These events must stay **extremely rare and ambiguous** — rare enough that many players will complete a full session without seeing one. Rare enough that when it happens, a player stops and questions it. If they happen too often they become a system. At the right frequency they become something players tell each other about and others don't believe. The AI should be a legend, not a mechanic.
 
 ### Setting Feel
 **Worn awe.** Ancient technology centuries old and showing it — cracked and tarnished but still glowing, still functioning. Nature reclaiming everything beautifully.
