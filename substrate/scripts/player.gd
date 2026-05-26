@@ -7,7 +7,7 @@ const DODGE_VELOCITY = 12.0
 const DODGE_DURATION = 0.25
 const MOUSE_SENSITIVITY = 0.003
 
-@onready var camera: Camera3D = $Camera3D
+@onready var camera: Camera3D = $Camera3D  # First-person — camera IS the player's eyes; no third-person body rendered locally
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 

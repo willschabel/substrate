@@ -45,6 +45,18 @@ Nothing in progress. Clean slate for Phase 2.
 
 ---
 
+## Code Reference
+
+**Style reference:** `substrate/scripts/autoloads/network.gd` — the cleanest example of conventions in this codebase. Section comments, clear delegation pattern, no logic in the facade. Follow this when unsure how to structure a new script.
+
+**Key architectural notes:**
+- `travel_system.gd` — dual-gate pattern: animation AND scene load must both complete before door opens. `_resolve_scene()` is the Phase 2 seam to fill.
+- `base.gd` — NORTH door = main (location entry/exit). SOUTH/EAST/WEST = side doors (guest base docking, max 3 guests).
+- `location.gd` — MISSION and PVP_ZONE types not yet added; Phase 2 adds them.
+- `grid_coord.gd` — `to_world` and `to_world_floor` are currently identical; ask user whether this is intentional before touching either.
+
+---
+
 ## Known Issues / Blockers
 
 None.

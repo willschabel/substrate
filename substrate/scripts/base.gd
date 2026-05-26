@@ -7,6 +7,8 @@ signal door_state_changed(direction: Door.Direction, is_open: bool)
 
 var is_traveling: bool = false
 
+# NORTH = main door: locks to location entry points and is the party's exit/entry.
+# SOUTH/EAST/WEST = side doors: guest bases dock here, one per guest (max 3).
 @onready var _doors: Dictionary = {
 	Door.Direction.NORTH: $Doors/DoorNorth,
 	Door.Direction.SOUTH: $Doors/DoorSouth,

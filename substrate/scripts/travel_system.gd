@@ -72,9 +72,12 @@ func _process(_delta: float) -> void:
 		_try_complete()
 
 func _try_complete() -> void:
+	# Both gates must clear before the door opens — animation covers the load,
+	# but if the load finishes first the door stays sealed until animation ends.
 	if _animation_done and _scene_loaded:
 		_base._on_travel_complete(_destination)
 
 func _resolve_scene(_destination: Vector3i) -> String:
-	# Phase 2+: look up coordinate registry and return scene path.
+	# Phase 2: populate a coordinate registry and return the scene path for the
+	# destination. Returning "" skips async load and marks scene ready immediately.
 	return ""

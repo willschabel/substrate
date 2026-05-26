@@ -148,6 +148,8 @@ The goal is that any new session can read CLAUDE.md + docs/session.md and be ful
 
 ### When to Ask vs. When to Proceed
 
+**If the user waves off pre-flight questions and says to just start building:** note which questions were skipped in docs/session.md, state the assumption made for each one explicitly in your first message, and mark every place that assumption affects code with `# ASSUMPTION: <what was assumed>`. The user can then correct assumptions without hunting through the codebase.
+
 **Always ask before proceeding if:**
 - A design detail affects how a system is *built* and isn't specified in docs/vision.md
 - Something contradicts a locked decision (marked `*(locked)*` in vision.md)
