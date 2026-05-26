@@ -97,6 +97,7 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 - [ ] GodotSteam integration — lobby, invite, join
 - [ ] Party system — leader designation, 4-player max
 - [ ] Base docking — joining player's base moves and slots adjacent to host, side door connects visually; host main door used for location entry
+- [ ] Player body model placeholder — other players see your character in the world; first person locally, third person to everyone else
 - [ ] Character sync — position, animation state, combat actions
 - [ ] Hybrid authority — loot rolls and economy writes routed through lightweight server, not host client
 
