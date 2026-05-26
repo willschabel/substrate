@@ -67,6 +67,14 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 *Establish the combat feel. This is the most important phase for fun.*
 *Read before starting: vision.md — **Combat**, **Inventory**, **The Player's Base**, and the **Enemies** section under The World.*
 
+**Pre-flight — ask the user before writing any code:**
+1. What is the first weapon type, and what should it feel like? (Weight, speed, swing arc)
+2. What was the first location before corruption — what was its purpose? (This determines the construct type, enemy behaviour, and aesthetic)
+3. Dodge mechanic — does it have invincibility frames? What direction and distance?
+4. Shield — does it regenerate? If so, how quickly and is there a delay before regen starts?
+5. On death: what is the sequence? (Fade? Fall? Instant?) Where does the player respawn?
+6. Are damage numbers shown to the player?
+
 - [ ] `Location` base class — extend Phase 0 base with entry/exit door binding, location type declaration, per-location rule flags (PvP on/off, mission vs open world)
 - [ ] One static handcrafted open-world location — thematically coherent constructs reflecting what the location once was (see vision doc enemy lore)
 - [ ] Basic enemy AI — patrol, aggro, melee attack; enemies are corrupted maintenance constructs, not generic monsters
@@ -89,6 +97,13 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 *Prove the profession system concept end-to-end — ranks, proven proficiency, instacraft, blueprints.*
 *Read before starting: vision.md — **Professions** (entire section).*
 
+**Pre-flight — ask the user before writing any code:**
+1. What does the rank 1 smithing mini-game actually look like? (A timing bar? Rhythm-based button presses? Describe the screen and the mechanic in concrete terms)
+2. What are the first craftable items and what do they produce? (Specific weapon/armour types)
+3. How does a player get their first blueprint? (Found in a location? Given at start? Bought from NPC?)
+4. How is the smithing workstation placed in the base? (Placed from an inventory item? Built from a menu?)
+5. Is there partial success on a failed craft, or binary success/fail?
+
 - [ ] Smithing workstation node (placeable in base)
 - [ ] Blueprint system — blueprints unlock recipes; no rank gate on attempting a craft, only on outcome and proficiency gain rate
 - [ ] 10-rank progression system (Untested → Raw → Apprentice → Journeyman → Artisan → Expert → Veteran → Master → Grandmaster → Legendary) with exponential success requirements per rank
@@ -108,6 +123,12 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 *Layer networking onto the already-working single-player loop.*
 *Read before starting: vision.md — **Multiplayer** and **How You Play** (docking and travel sections).*
 
+**Pre-flight — ask the user before writing any code:**
+1. How does party invite flow work? (Steam overlay only, or in-game UI as well?)
+2. What happens to a guest's base when they leave the party mid-session? (Returns to last position? Stays docked until they manually undock?)
+3. Can a guest navigate and interact with their own base independently while docked to the host?
+4. What is the visual for two bases docking? (Animated approach and lock, or does it snap?)
+
 - [ ] GodotSteam integration — lobby, invite, join
 - [ ] Party system — leader designation, 4-player max
 - [ ] Base docking — joining player's base moves and slots adjacent to host, side door connects visually; host main door used for location entry
@@ -121,6 +142,12 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 
 ## Phase 5 — Economy & Objectives Skeleton
 *Read before starting: vision.md — **Economy**, **Session Loop** (Objectives & Contracts), and **Grid as World Structure**.*
+
+**Pre-flight — ask the user before writing any code:**
+1. What is the currency? Does it have a name and a physical form, or is it abstract?
+2. What do NPCs look like? (Constructs? Humanoids? Something lore-consistent given players are the only living things in the grid — see lore_rules.md)
+3. Do player market stalls operate while the player is offline, or must they be present?
+4. How does NPC vendor stock work? (Fixed catalogue? Randomised per visit? Refreshes on a timer?)
 
 - [ ] Currency system
 - [ ] Loot rarity tiers (feeds into crafting material system)
@@ -138,6 +165,9 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 ## Phase 6 — Remaining Professions
 *Each profession needs a unique mini-game mechanic — not a smithing reskin.*
 *Read before starting: vision.md — **Professions** (Mini-Game Philosophy and the profession table).*
+
+**Pre-flight — ask the user before writing any code:**
+1. For each of the four remaining professions (Alchemy, Cooking, Enchanting, Woodworking): what does the mini-game actually look like? Describe the screen and mechanic concretely before any are built. Do not invent mechanics — ask for each one.
 
 - [ ] Alchemy — consumables, buffs, poisons
 - [ ] Cooking — food buffs, stamina recovery items
@@ -174,6 +204,13 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 ## Phase 8 — PvP & Expansion Layer
 *Core game content built post-polish. PvP zones are a primary playstyle path, not optional extras.*
 *Read before starting: vision.md — **Session Loop** (What Drives Destination Choice), **Grid as World Structure**, and **Combat** (PvP TTK section).*
+
+**Pre-flight — ask the user before writing any code:**
+1. When a player is killed by another player, what loot do they drop — everything, or a portion?
+2. How are PvP zones identified on the grid atlas — marked explicitly, or discovered by entering?
+3. Are there any PvP-specific systems (bounties, reputation, kill tracking) or is it purely open combat with loot-on-kill?
+4. For base customisation: what modules are available at launch, and how is placement handled inside the base?
+5. For the skill system: how do non-weapon skills work and how are they acquired?
 
 - [ ] PvP zones — grid locations where players are threats; high-risk high-reward; loot-on-kill
 - [ ] Mission location type — structured objectives, can lock players in until completion conditions met; per-location time cycles and rules
