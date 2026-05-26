@@ -98,12 +98,33 @@ Reference points:
 
 The signature visual contrast: **cold teal ancient tech glow against warm amber human habitation.**
 
+### Enemies — Corrupted Constructs *(locked lore)*
+
+When the entity imported locations into the grid, **all original life was removed from them**. In place of that life, the AI populated each location with maintenance constructs — purpose-built for that location's specific needs. A harvesting location got agricultural constructs. A storage facility got archival and retrieval constructs. A laboratory got research constructs. Each location's inhabitants were entirely functional, purposeful, and specific to what that place needed.
+
+When the AI abandoned its maintenance directive, the constructs were abandoned with it. Without purpose, without oversight, without the directive that defined them — they corrupted. Not into something evil. Into something *wrong*. A construct built to tend crops now does something broken with its tools. A retrieval construct searches endlessly for something that no longer exists. A security construct protects nothing, from nothing, forever.
+
+**This is the trickle-down abandonment that defines the world:**
+- The entity abandoned the AI
+- The AI abandoned its maintenance directive
+- The constructs were abandoned by the maintenance directive
+- The locations were abandoned by the constructs that tended them
+- Everything in the grid is the residue of something that stopped caring
+
+**Implications for enemy design:**
+- Every location has thematically unique constructs — enemies are not generic, they reflect what that location once *was*
+- Construct hostility is corruption of purpose, not malice — they were never built to fight
+- This gives unlimited enemy variety that is always lore-consistent
+- Players are not fighting monsters — they are navigating the wreckage of abandoned purpose
+- The constructs that were once most capable are now the most dangerous
+
 ### Lore Rules
 - Nobody knows who built the grid or why — scholars theorise, none know
 - The tech still functions but nobody fully understands it
 - "Magic" in this world is almost always misunderstood ancient technology
 - The player's base navigation system is one of these ancient tools — used because it works, not because it's understood
 - Players are, unknowingly, a creation of the grid's AI — this is never stated in-game
+- All original life was removed from imported locations — the only living things in the grid are players
 
 ---
 
@@ -357,4 +378,3 @@ The diversity of location rules means no two runs feel identical even at the sam
 - How much base customisation at launch vs. expansion? (Current plan: Phase 7+)
 - Procedural location generation — how much, how soon?
 - Skill system specifics — how do non-weapon skills work?
-- Enemy design philosophy — all ancient constructs, or do other inhabitants exist?
