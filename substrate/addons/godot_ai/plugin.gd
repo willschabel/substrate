@@ -7,9 +7,12 @@ const GAME_HELPER_AUTOLOAD_PATH := "res://addons/godot_ai/runtime/game_helper.gd
 ## Editor-process Logger subclass — captures parse errors, @tool runtime
 ## errors, and push_error/push_warning so the LLM can read them via
 ## `logs_read(source="editor")`. Loaded dynamically because
-## `extends Logger` requires Godot 4.5+; gating on ClassDB at registration
-## time keeps the plugin loadable on 4.4. See issue #231.
-const EDITOR_LOGGER_PATH := "res://addons/godot_ai/runtime/editor_logger.gd"
+## `extends Logger` requires Godot 4.5+. The logger script lives in the
+## `.gdignore`'d `runtime/loggers/` folder so Godot's editor scan never
+## parses it (no "Could not find base class Logger" error on < 4.5), and
+## LoggerLoader compiles it from source at runtime only after the
+## ClassDB.class_exists("Logger") gate below. See issue #231 / #475.
+const LoggerLoader := preload("res://addons/godot_ai/runtime/logger_loader.gd")
 
 ## EditorSettings keys used to remember which server process the plugin
 ## spawned — survives editor restarts, lets a later editor session adopt
@@ -41,6 +44,7 @@ const StartupPathScript := preload("res://addons/godot_ai/utils/mcp_startup_path
 ## write-before-scan model.
 const Connection := preload("res://addons/godot_ai/connection.gd")
 const Dispatcher := preload("res://addons/godot_ai/dispatcher.gd")
+const Telemetry := preload("res://addons/godot_ai/telemetry.gd")
 const LogBuffer := preload("res://addons/godot_ai/utils/log_buffer.gd")
 const GameLogBuffer := preload("res://addons/godot_ai/utils/game_log_buffer.gd")
 const EditorLogBuffer := preload("res://addons/godot_ai/utils/editor_log_buffer.gd")
@@ -139,12 +143,15 @@ const STARTUP_TRACE_COUNTER_NAMES := [
 ##
 ## `tests/unit/test_plugin_self_update_safety.py` locks this wording in.
 ##
-## `_editor_logger` was already untyped because its script extends Godot
-## 4.5+'s Logger class and is loaded via `load()` so the plugin still parses
-## on 4.4. Null on Godot < 4.5 or before `_attach_editor_logger` runs;
-## "attached" state IS exactly "non-null".
+## `_editor_logger` is untyped because its script extends Godot 4.5+'s Logger
+## class: `logger_loader.gd` compiles it at runtime from on-disk source
+## (FileAccess + `GDScript.new()`) past the `ClassDB.class_exists("Logger")`
+## gate in `_attach_editor_logger`, so the plugin still parses on 4.4. Null on
+## Godot < 4.5 or before `_attach_editor_logger` runs; "attached" state IS
+## exactly "non-null".
 var _connection
 var _dispatcher
+var _telemetry
 var _log_buffer
 var _game_log_buffer
 var _editor_log_buffer
@@ -189,6 +196,13 @@ func _enter_tree() -> void:
 		print("MCP | plugin disabled in headless mode")
 		return
 
+	## Self-update from a pre-loggers/ version leaves the old logger scripts
+	## orphaned at runtime/*.gd (the runner only writes files in the new ZIP,
+	## it doesn't prune). Those still `extends Logger` and re-emit the parse
+	## errors on Godot < 4.5. Delete them once so upgraders match a fresh
+	## install. No-op on fresh installs and dev checkouts (files absent).
+	_cleanup_legacy_logger_scripts()
+
 	## Register port overrides before spawn so `http_port()` / `ws_port()`
 	## return the user's configured values (if any) when `_start_server`
 	## builds the CLI args.
@@ -215,6 +229,8 @@ func _enter_tree() -> void:
 		and not ServerStateScript.is_terminal_diagnosis(_lifecycle.get_state())
 	):
 		_arm_server_version_check()
+
+	_telemetry = Telemetry.new(_connection)
 
 	_debugger_plugin = DebuggerPlugin.new(_log_buffer, _game_log_buffer)
 	add_debugger_plugin(_debugger_plugin)
@@ -275,6 +291,8 @@ func _enter_tree() -> void:
 	_dispatcher.register("get_performance_monitors", editor_handler.get_performance_monitors)
 	_dispatcher.register("reload_plugin", editor_handler.reload_plugin)
 	_dispatcher.register("quit_editor", editor_handler.quit_editor)
+	_dispatcher.register("game_eval", editor_handler.game_eval)
+	_dispatcher.register("game_command", editor_handler.game_command)
 	_dispatcher.register("get_project_setting", project_handler.get_project_setting)
 	_dispatcher.register("set_project_setting", project_handler.set_project_setting)
 	_dispatcher.register("run_project", project_handler.run_project)
@@ -385,8 +403,41 @@ func _enter_tree() -> void:
 	_startup_trace_phase("dock_attached")
 
 	_log_buffer.log("plugin loaded")
+	if _telemetry != null:
+		_telemetry.record_dock_startup()
+		_flush_pending_self_update_telemetry()
+		_telemetry.flush_pending_plugin_reload()
 	var startup_path: String = str(_lifecycle.get_startup_path())
 	_startup_trace_finish(startup_path if not startup_path.is_empty() else "loaded")
+
+
+## Public wrapper around the dev-server-toggle telemetry emit. Lets the
+## dock (or any other caller) record without reaching into ``_telemetry``
+## directly — keeps the plugin's internal field encapsulated. The dev
+## server is a Python subprocess unrelated to the plugin's own
+## lifecycle, so emission can be synchronous (no EditorSettings persist
+## dance like ``plugin_reload`` / ``self_update``).
+func record_dev_server_toggle(action: String) -> void:
+	if _telemetry == null:
+		return
+	_telemetry.record_dev_server_toggle(action)
+
+
+## Drain any self_update event written by `update_reload_runner` during the
+## previous disable -> enable window.
+func _flush_pending_self_update_telemetry() -> void:
+	var key := UPDATE_RELOAD_RUNNER_SCRIPT.PENDING_SELF_UPDATE_TELEMETRY_KEY
+	var parsed = Telemetry._drain_editor_setting_dict(key)
+	if parsed == null:
+		return
+	var status := str(parsed.get("status", "unknown"))
+	var error := str(parsed.get("error", ""))
+	## Positional args: GDScript doesn't support keyword args in calls
+	## (unlike Python). from_version + to_version are empty strings here
+	## — only ``status`` and ``error`` are known at flush time.
+	_telemetry.record_self_update(status, "", "", error)
+
+
 
 
 func _exit_tree() -> void:
@@ -464,11 +515,29 @@ func _exit_tree() -> void:
 func _attach_editor_logger() -> void:
 	if not (ClassDB.class_exists("Logger") and OS.has_method("add_logger")):
 		return
-	var logger_script := load(EDITOR_LOGGER_PATH)
+	var logger_script := LoggerLoader.build(LoggerLoader.EDITOR_LOGGER_PATH)
 	if logger_script == null:
 		return
 	_editor_logger = logger_script.new(_editor_log_buffer)
 	OS.call("add_logger", _editor_logger)
+
+
+## Remove the pre-2.5.8 logger scripts left at runtime/*.gd by a self-update
+## (the runner doesn't prune files dropped between versions). They `extends
+## Logger` and would re-emit "Could not find base class Logger" parse errors
+## on Godot < 4.5 even though the live copies now live in the .gdignore'd
+## runtime/loggers/ folder. Idempotent: existence-guarded, so it's a no-op on
+## fresh installs and symlinked dev checkouts.
+func _cleanup_legacy_logger_scripts() -> void:
+	var legacy := [
+		"res://addons/godot_ai/runtime/editor_logger.gd",
+		"res://addons/godot_ai/runtime/editor_logger.gd.uid",
+		"res://addons/godot_ai/runtime/game_logger.gd",
+		"res://addons/godot_ai/runtime/game_logger.gd.uid",
+	]
+	for res_path in legacy:
+		if FileAccess.file_exists(res_path):
+			DirAccess.remove_absolute(ProjectSettings.globalize_path(res_path))
 
 
 func _detach_editor_logger() -> void:
@@ -496,7 +565,7 @@ static func _mcp_disabled_for_headless_launch() -> bool:
 
 
 static func _mcp_disabled_for_headless(args: PackedStringArray, display_name: String, allow_value: String) -> bool:
-	if _env_truthy(allow_value):
+	if McpSettings.truthy(allow_value):
 		return false
 	return _args_request_headless(args) or display_name.to_lower() == "headless"
 
@@ -513,12 +582,6 @@ static func _args_request_headless(args: PackedStringArray) -> bool:
 	return false
 
 
-static func _env_truthy(value: String) -> bool:
-	match value.strip_edges().to_lower():
-		"1", "true", "yes", "on":
-			return true
-		_:
-			return false
 
 
 func _disable_plugin() -> void:
@@ -625,10 +688,10 @@ static func _incompatible_server_message(
 
 
 static func _server_version_compatibility(
-	actual_version: String, expected_version: String, is_dev_checkout: bool
+	actual_version: String, expected_version: String
 ) -> Dictionary:
 	return ServerLifecycleManager._server_version_compatibility(
-		actual_version, expected_version, is_dev_checkout
+		actual_version, expected_version
 	)
 
 
@@ -637,10 +700,9 @@ static func _server_status_compatibility(
 	expected_version: String,
 	actual_ws_port: int,
 	expected_ws_port: int,
-	is_dev_checkout: bool,
 ) -> Dictionary:
 	return ServerLifecycleManager._server_status_compatibility(
-		actual_version, expected_version, actual_ws_port, expected_ws_port, is_dev_checkout
+		actual_version, expected_version, actual_ws_port, expected_ws_port
 	)
 
 
@@ -708,6 +770,10 @@ static func _probe_live_server_status(port: int, timeout_ms: int = SERVER_STATUS
 	result["name"] = str(parsed.get("name", ""))
 	result["version"] = _extract_server_version(parsed)
 	result["ws_port"] = int(parsed.get("ws_port", 0))
+	## `package_path` was added in v2.4.4 (#416) so the dock's
+	## "Incompatible server" banner can name the source of a version
+	## skew. Older servers omit it; treat the missing field as "".
+	result["package_path"] = str(parsed.get("package_path", ""))
 	return result
 
 
@@ -1063,18 +1129,32 @@ func _recover_strong_port_occupant(port: int, wait_s: float, pre_kill_live: Dict
 func _legacy_pidfile_kill_targets(_port: int, listener_pids: Array[int]) -> Array[int]:
 	var targets: Array[int] = []
 	var pidfile_pid := _read_pid_file_for_proof()
-	var pidfile_alive := _pid_alive_for_proof(pidfile_pid)
-	var pidfile_branded := _pid_cmdline_is_godot_ai_for_proof(pidfile_pid)
 	if pidfile_pid <= 1 or pidfile_pid == OS.get_process_id():
 		return targets
-	if not listener_pids.has(pidfile_pid) or not pidfile_alive:
-		return targets
-	if not pidfile_branded:
+	## An alive, branded pid-file PID is sufficient ownership proof. Under
+	## `uvicorn --reload` the reloader writes the pid-file but a child worker
+	## binds the port, so `listener_pids` never contains the reloader PID.
+	## Requiring `listener_pids.has(pidfile_pid)` here used to silently skip
+	## the kill path for the entire reload-shaped server family. The branded
+	## listener loop below still does the per-PID brand check so we never
+	## kill an unrelated process that happens to share the port.
+	if not _pid_alive_for_proof(pidfile_pid) or not _pid_cmdline_is_godot_ai_for_proof(pidfile_pid):
 		return targets
 
 	for pid in listener_pids:
-		if pid > 1 and pid != OS.get_process_id() and _pid_cmdline_is_godot_ai_for_proof(pid):
+		if pid <= 1 or pid == OS.get_process_id():
+			continue
+		## Reuse the brand result already proven above when this listener is
+		## the same PID as the pidfile — saves a parent-chain walk and a
+		## shell-out (PowerShell on Windows, /proc on Linux, ps on macOS) per
+		## startup proof evaluation.
+		if pid == pidfile_pid or _pid_cmdline_is_godot_ai_for_proof(pid):
 			targets.append(pid)
+	## Also kill the reloader/launcher itself when it isn't already a listener.
+	## Without this, `--reload` workers would be killed but their parent would
+	## immediately respawn a replacement and the port would never free.
+	if not targets.has(pidfile_pid):
+		targets.append(pidfile_pid)
 	return targets
 
 
@@ -1496,7 +1576,10 @@ func start_dev_server() -> void:
 			var new_pp := worktree_src if prev_pythonpath.is_empty() else worktree_src + sep + prev_pythonpath
 			OS.set_environment("PYTHONPATH", new_pp)
 
+		var injected_telemetry: bool = _lifecycle._inject_telemetry_env()
 		var pid := OS.create_process(cmd, inner_args)
+		if injected_telemetry:
+			OS.unset_environment("GODOT_AI_DISABLE_TELEMETRY")
 
 		## Restore PYTHONPATH immediately — the spawned child has already
 		## copied the env, so the editor's own process state returns to
@@ -1509,7 +1592,10 @@ func start_dev_server() -> void:
 				OS.set_environment("PYTHONPATH", prev_pythonpath)
 
 		if pid > 0:
-			var suffix := " (PYTHONPATH=%s)" % worktree_src if not worktree_src.is_empty() else ""
+			## Match `server_lifecycle.gd::start_server`'s log wording —
+			## "prefix" since we prepended to any pre-existing PYTHONPATH,
+			## not replaced it. See #429 review.
+			var suffix := " (PYTHONPATH prefix=%s)" % worktree_src if not worktree_src.is_empty() else ""
 			print("MCP | started dev server with --reload (PID %d): %s %s%s" % [pid, cmd, " ".join(inner_args), suffix])
 		else:
 			push_warning("MCP | failed to start dev server")

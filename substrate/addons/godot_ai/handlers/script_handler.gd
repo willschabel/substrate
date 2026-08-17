@@ -73,7 +73,7 @@ func create_script(params: Dictionary) -> Dictionary:
 	# overwrite the resource was already known to ResourceLoader, so reply now.
 	var request_id: String = params.get("_request_id", "")
 	if not existed_before and _connection != null and not request_id.is_empty():
-		_finish_create_script_deferred(request_id, path, data)
+		_finish_create_script_deferred(_connection, request_id, path, data)
 		return McpDispatcher.DEFERRED_RESPONSE
 
 	# Synchronous fallback: batch_execute (no request_id) and unit-test contexts
@@ -81,8 +81,25 @@ func create_script(params: Dictionary) -> Dictionary:
 	return {"data": data}
 
 
-func _finish_create_script_deferred(request_id: String, path: String, data: Dictionary) -> void:
-	var tree := _connection.get_tree()
+# `static` is load-bearing: the deferred completion captures no `self`, so the
+# coroutine survives even if the ScriptHandler RefCounted is freed mid-await.
+# Under concurrent script_create storms with editor_reload_plugin fired during
+# the burst, the handler instance is otherwise GC'd between `await` and resume,
+# producing "Resumed function '_finish_create_script_deferred()' after await,
+# but class instance is gone" errors and dropping the response. Keep this
+# function static and parameterise everything it needs explicitly — do not
+# reference instance state.
+static func _finish_create_script_deferred(
+	connection: McpConnection,
+	request_id: String,
+	path: String,
+	data: Dictionary,
+) -> void:
+	if not is_instance_valid(connection):
+		return
+	var tree := connection.get_tree()
+	if tree == null:
+		return
 	var deadline_ms := Time.get_ticks_msec() + _IMPORT_SETTLE_MAX_MSEC
 	# Let _dispatch() return DEFERRED_RESPONSE and register the request before
 	# this coroutine can send a committed result. ResourceLoader.exists(path)
@@ -100,17 +117,17 @@ func _finish_create_script_deferred(request_id: String, path: String, data: Dict
 	):
 		await tree.process_frame
 		frames += 1
-	# If the plugin tears down (_exit_tree frees _connection) during the await,
-	# is_instance_valid() goes false and we drop the response silently — the
-	# server's request timeout will surface the failure to the caller.
-	if not is_instance_valid(_connection):
+	# If the plugin tears down (_exit_tree frees the connection) during the
+	# await, is_instance_valid() goes false and we drop the response silently —
+	# the server's request timeout will surface the failure to the caller.
+	if not is_instance_valid(connection):
 		return
 	var payload := data.duplicate()
 	var settled := ResourceLoader.exists(path)
 	payload["import_settled"] = settled
 	payload["import_settle"] = "settled" if settled else "timeout"
 	payload["import_pending"] = not settled
-	_connection.send_deferred_response(request_id, {"data": payload})
+	connection.send_deferred_response(request_id, {"data": payload})
 
 
 func read_script(params: Dictionary) -> Dictionary:
@@ -217,7 +234,7 @@ func attach_script(params: Dictionary) -> Dictionary:
 	if _resolved.has("error"):
 		return _resolved
 	var node: Node = _resolved.node
-	var scene_root: Node = _resolved.scene_root
+	var _scene_root: Node = _resolved.scene_root
 
 	if not ResourceLoader.exists(script_path):
 		return ErrorCodes.make(ErrorCodes.RESOURCE_NOT_FOUND, "Script not found: %s" % script_path)
@@ -253,7 +270,7 @@ func detach_script(params: Dictionary) -> Dictionary:
 	if _resolved.has("error"):
 		return _resolved
 	var node: Node = _resolved.node
-	var scene_root: Node = _resolved.scene_root
+	var _scene_root: Node = _resolved.scene_root
 
 	var old_script: Script = node.get_script()
 	if old_script == null:
@@ -318,9 +335,10 @@ func find_symbols(params: Dictionary) -> Dictionary:
 			else:
 				signals_list.append(sig_text)
 
-		# func
-		if line.begins_with("func "):
-			var func_text := line.substr(5).strip_edges()
+		# func (including `static func` — strip the leading `static ` first)
+		var func_line := line.substr(7).strip_edges() if line.begins_with("static func ") else line
+		if func_line.begins_with("func "):
+			var func_text := func_line.substr(5).strip_edges()
 			var paren_idx := func_text.find("(")
 			if paren_idx >= 0:
 				functions.append({

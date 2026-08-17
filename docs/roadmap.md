@@ -41,7 +41,7 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 - [x] Scene conventions — `Location` base class with type, grid size, safe zone flag
 - [x] Multiplayer authority layer — `NetworkProvider` base class, `OfflineNetworkProvider` stub, `Network` autoload facade
 - [x] Grid visual — infinite white room with light blue grid lines (shader/environment, not geometry)
-- [x] Refine player controller — dodge (Q), sprint (Shift), attack stubs (LMB/RMB)
+- [x] Refine player controller — sprint (Shift), attack stubs (LMB/RMB) *(dodge was prototyped here and later cut in Phase 2 — see Phase 2 decisions)*
 - [x] GUT testing framework — install addon, create `res://tests/` directory, write tests for `GridCoord`
 - [x] **Visual:** Mood board / style reference — lock the futuristic-medieval aesthetic before building anything permanent (AI tools for concepting)
 
@@ -67,29 +67,31 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 *Establish the combat feel. This is the most important phase for fun.*
 *Read before starting: vision.md — **Combat**, **Inventory**, **The Player's Base**, and the **Enemies** section under The World.*
 
-**Pre-flight — ask the user before writing any code:**
-1. What is the first weapon type, and what should it feel like? (Weight, speed, swing arc)
-2. What was the first location before corruption — what was its purpose? (This determines the construct type, enemy behaviour, and aesthetic)
-3. Dodge mechanic — does it have invincibility frames? What direction and distance?
-4. Shield — does it regenerate? If so, how quickly and is there a delay before regen starts?
-5. On death: what is the sequence? (Fade? Fall? Instant?) Where does the player respawn?
-6. Are damage numbers shown to the player?
+**Pre-flight — RESOLVED (answers locked, 2026-06-01):**
+1. **First weapon:** a **shortsword** with directional, *Mordhau*-style melee — a **directional slash** (LMB, angle set by mouse movement just before/during the swing) and a **stab/thrust** (RMB, faster + longer reach, less damage).
+2. **First location:** corrupted **Harvesting Grounds** — an agricultural/harvesting site. Constructs are agricultural tenders now doing broken versions of crop work. Outdoor aesthetic: rolling terrain, half-buried ancient stones, vibrant nature, grid as glowing blue sky.
+3. **Dodge:** **removed entirely** — no dodge roll/dash in the game or docs. Spacing and commitment replace it.
+4. **Shield:** **does not regenerate** — stays down until repaired by item/base. Health also does not regenerate.
+5. **On death:** **instant cut back to base** (no fade, no ragdoll); all carried items lost; base is the respawn point.
+6. **Damage numbers:** **none** — feedback via VFX/hitstun/enemy reactions only.
 
-- [ ] `Location` base class — extend Phase 0 base with entry/exit door binding, location type declaration, per-location rule flags (PvP on/off, mission vs open world)
-- [ ] One static handcrafted open-world location — thematically coherent constructs reflecting what the location once was (see vision doc enemy lore)
-- [ ] Basic enemy AI — patrol, aggro, melee attack; enemies are corrupted maintenance constructs, not generic monsters
-- [ ] First-person viewmodel — arms and weapon only; no third-person body needed
-- [ ] Melee combat — one weapon type, hit detection, hitstun, weapon recovery animations. No stamina system. Slow and methodical feel comes from low TTK and attack commitment, not a resource bar. Get the feel right here.
-- [ ] Ranged combat stub — one ranged weapon
-- [ ] Player stats — gear-based health pool, shield (absorbs damage before health), weapon damage; no character levelling
-- [ ] HUD — health bar and shield bar only
+- [~] `Location` base class — extend Phase 0 base with entry/exit door binding, location type declaration (add `MISSION`, `PVP_ZONE`), per-location rule flags (PvP on/off, mission vs open world)
+- [ ] One static handcrafted open-world location — the **Harvesting Grounds**; agricultural constructs reflecting what the location once was (see vision doc enemy lore)
+- [~] Basic enemy AI — patrol, aggro, melee attack; agricultural maintenance constructs, not generic monsters (`scripts/enemies/construct.gd`, `scenes/enemies/construct.tscn`)
+- [~] First-person viewmodel — arms and weapon only; no third-person body needed (placeholder box geometry under `Camera3D/Viewmodel`)
+- [~] **Melee combat (primary — shortsword)** — directional slash (LMB, angle from mouse) + stab (RMB), hitbox during active window, hitstun, weapon-recovery lockout. No dodge, no stamina. `scripts/combat/melee_weapon.gd`. **Feel pending live confirmation — heart of the phase.**
+- [~] Ranged combat stub — **pump shotgun** (hitscan cone, distance falloff, pump cooldown); weapon switching (1 = sword, 2 = shotgun). `scripts/combat/ranged_weapon.gd`
+- [~] Player stats — gear-based health pool + shield (absorbs first, no regen), reusable `Health` component; `scripts/combat/health.gd` (17 unit tests)
+- [~] HUD — health bar and shield bar only; no damage numbers (`scenes/ui/hud.tscn`)
 - [ ] Slot-based inventory — items have rarity point values; foundation for location entry requirements and extraction caps
 - [ ] Extraction rules — losing all carried items on death; loot drop + pickup
 - [ ] Return travel back to base
 - [ ] Base indexing — location visited is recorded with coordinates, type, and observed conditions; foundation for the player's personal grid atlas
-- [ ] **Visual:** Hit feedback — impact effects, hitstun flash, basic enemy hurt animation (functional, not decorative; combat feel depends on these)
+- [ ] **Visual:** Hit feedback — impact effects, hitstun flash, basic enemy hurt animation (functional, not decorative; combat feel depends on these). *Partial: construct has a white hurt-flash + amber attack-telegraph glow; still need a player-side hit/damage flash and weapon-impact VFX.*
 
-**Phase complete when:** User confirms combat *feel* is right — not just functional, but fun and weighty. TTK, dodge windows, and hit feedback must all be confirmed before moving on. This is the hardest phase to get right.
+> **Combat test vehicle:** `res://scenes/combat_sandbox.tscn` — flat arena, player, HUD, and three constructs. This is the throwaway scene for tuning combat feel; the handcrafted Harvesting Grounds art location is built only after feel is confirmed.
+
+**Phase complete when:** User confirms combat *feel* is right — not just functional, but fun and weighty. TTK, directional-melee read/commitment, and hit feedback must all be confirmed before moving on. This is the hardest phase to get right.
 
 ---
 
@@ -184,7 +186,7 @@ A first-person 3D multiplayer extraction RPG set inside an infinite ancient grid
 *Read before starting: vision.md — **Setting Feel** and the **Enemies** section (for construct visual direction). Also read docs/setting.md and docs/prompt_guide.md in full.*
 
 **Production assets (self-made + AI-assisted):**
-- [ ] Final first-person viewmodel — arms, hands, weapon animations (attack, block, dodge, idle)
+- [ ] Final first-person viewmodel — arms, hands, weapon animations (slash, stab, block/parry, idle)
 - [ ] Final enemy models + animations — per-location thematic constructs, not generic enemies
 - [ ] Base interior — final textures, props, lighting
 - [ ] Combat location(s) — final environment art

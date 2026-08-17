@@ -47,7 +47,9 @@ substrate/  (repo root)
 
 **Phase 0 — Architecture Foundation** — complete
 **Phase 1 — The Base** — complete
-**Phase 2 — First Combat Location** — next
+**Phase 2 — First Combat Location** — in progress
+
+**Phase 2 locked decisions** (from pre-flight): first weapon is a **shortsword** with directional *Mordhau*-style melee (LMB = directional slash, RMB = stab); **pump shotgun** is the ranged stub; the first location is a corrupted **Harvesting Grounds** (agricultural constructs, outdoor); **no dodge**; **shield does not regenerate** (and health never regenerates); death is an **instant cut back to base** with all carried items lost; **no damage numbers** (HUD is health + shield bars only).
 
 ---
 
@@ -75,10 +77,11 @@ substrate/  (repo root)
 | `move_right` | D | active |
 | `ui_accept` (jump) | Space | active |
 | `sprint` | Shift | active |
-| `dodge` | Q | active |
-| `attack_primary` | LMB | stub (Phase 2) |
-| `attack_secondary` | RMB | stub (Phase 2) |
+| `attack_primary` | LMB | melee: directional slash / ranged: fire |
+| `attack_secondary` | RMB | melee: stab/thrust |
 | `nav_open` | Tab | toggle navigation controller UI |
+
+> Combat is first-person and directional, modelled on *Mordhau*'s "240" system: the slash angle is set by mouse movement just before/during the swing. There is **no dodge** — deliberate play comes from low TTK, attack commitment, and spacing, not a dodge roll or stamina bar.
 
 ## Multiplayer Authority Model
 

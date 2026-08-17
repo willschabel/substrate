@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://b1e08g5f8txsj"]
+
+[ext_resource type="Environment" path="res://environments/grid_world.tres" id="1_wlir7"]
+[ext_resource type="PackedScene" uid="uid://hbyy2pa140wt" path="res://scenes/player.tscn" id="2_ic00v"]
+[ext_resource type="PackedScene" uid="uid://mvcx32b0s60b" path="res://scenes/ui/hud.tscn" id="3_eslsp"]
+[ext_resource type="PackedScene" uid="uid://b50ie0vjlexp2" path="res://scenes/enemies/construct.tscn" id="4_v6y8g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jgj3w"]
+size = Vector3(60, 1, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g5ktu"]
+size = Vector3(60, 1, 60)
+
+[node name="CombatSandbox" type="Node3D" unique_id=947640970]
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=363185432]
+transform = Transform3D(0.8253356, -0.44229966, 0.3509874, 0, 0.62161, 0.7833269, -0.5646425, -0.6465076, 0.51303685, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=585650286]
+environment = ExtResource("1_wlir7")
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1388074322]
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor" unique_id=1652420427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_jgj3w")
+
+[node name="FloorCol" type="CollisionShape3D" parent="Floor" unique_id=1300722131]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_g5ktu")
+
+[node name="Player" parent="." unique_id=469955465 instance=ExtResource("2_ic00v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="HUD" parent="." unique_id=394540006 instance=ExtResource("3_eslsp")]
+
+[node name="Construct" parent="." unique_id=1845084875 instance=ExtResource("4_v6y8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
+
+[node name="Construct2" parent="." unique_id=760078176 instance=ExtResource("4_v6y8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -9)
+
+[node name="Construct3" parent="." unique_id=910314682 instance=ExtResource("4_v6y8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -14)

@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://hbyy2pa140wt"]
 
 [ext_resource type="Script" uid="uid://nebgr5y1leru" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://ccdrf4akstpt7" path="res://scripts/combat/melee_weapon.gd" id="2_dqkch"]
+[ext_resource type="Script" uid="uid://dfywudixbo1oe" path="res://scripts/combat/ranged_weapon.gd" id="3_qlg0r"]
+[ext_resource type="Script" uid="uid://c6vs7ojy6tu0l" path="res://scripts/combat/health.gd" id="4_tuyoq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.4
@@ -9,6 +12,15 @@ height = 1.8
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qhqgy"]
 radius = 0.4
 height = 1.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_fjrip"]
+size = Vector3(0.04, 0.04, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_smehm"]
+size = Vector3(0.3, 0.3, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ur7pv"]
+size = Vector3(0.08, 0.08, 0.6)
 
 [node name="Player" type="CharacterBody3D" unique_id=469955465]
 script = ExtResource("1_3vyb7")
@@ -19,7 +31,39 @@ shape = SubResource("CapsuleShape3D_g2els")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=933264573]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_qhqgy")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=323528154]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Viewmodel" type="Node3D" parent="Camera3D" unique_id=1374014241]
+
+[node name="Shortsword" type="Node3D" parent="Camera3D/Viewmodel" unique_id=1412454091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28, -0.22, -0.45)
+script = ExtResource("2_dqkch")
+
+[node name="BladePivot" type="Node3D" parent="Camera3D/Viewmodel/Shortsword" unique_id=1426857180]
+
+[node name="Blade" type="MeshInstance3D" parent="Camera3D/Viewmodel/Shortsword/BladePivot" unique_id=941365179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.35)
+mesh = SubResource("BoxMesh_fjrip")
+
+[node name="Hitbox" type="Area3D" parent="Camera3D/Viewmodel/Shortsword/BladePivot" unique_id=1411976801]
+collision_layer = 0
+collision_mask = 2
+
+[node name="HitboxShape" type="CollisionShape3D" parent="Camera3D/Viewmodel/Shortsword/BladePivot/Hitbox" unique_id=1229323703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45)
+shape = SubResource("BoxShape3D_smehm")
+
+[node name="Shotgun" type="Node3D" parent="Camera3D/Viewmodel" unique_id=1734421815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28, -0.22, -0.4)
+script = ExtResource("3_qlg0r")
+
+[node name="Model" type="MeshInstance3D" parent="Camera3D/Viewmodel/Shotgun" unique_id=2108715732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
+mesh = SubResource("BoxMesh_ur7pv")
+
+[node name="Health" type="Node" parent="." unique_id=105690942]
+script = ExtResource("4_tuyoq")

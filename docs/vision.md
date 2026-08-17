@@ -155,14 +155,15 @@ Every encounter should feel like it mattered. Spacing, timing, and reading enemi
 ### Player Stats
 All stats are **purely gear-based**. No character levelling — a player gets stronger by getting better gear, not by accumulating XP.
 
-- **Health pool** — determined by gear
-- **Shield** — a separate buffer that absorbs damage before health; determined by gear
+- **Health pool** — determined by gear. **Does not regenerate** — once lost, health stays down until restored by an item or the base.
+- **Shield** — a separate buffer that absorbs damage before health; determined by gear. **Does not regenerate** *(locked)* — once depleted it stays down until repaired by an item or by returning to base. Both bars are run resources; every hit is a permanent cost until you extract.
 - **Damage** — determined by the weapon equipped
 - No stamina system *(locked)* — weapon recovery animations and low TTK enforce deliberate play without a resource meter
 
 ### HUD
 - Health bar — visible
 - Shield bar — visible
+- **No damage numbers** *(locked)* — hit feedback is delivered through impact VFX, hitstun, and enemy reactions, never floating numbers
 - Nothing else — no stamina bar, no minimap, no floating markers
 
 ### TTK by Context
@@ -176,7 +177,9 @@ All stats are **purely gear-based**. No character levelling — a player gets st
 - **Low TTK** *(locked)* — non-negotiable, tuned early and protected throughout development
 - **No stamina system** *(locked)* — deliberate play comes from danger and weapon recovery, not resource management
 - **First person melee and ranged** — both must feel physically grounded; weapon weight and swing arc must read clearly in first person
-- Hitstun, dodge windows, impact weight — combat feel is the most critical thing to get right and the hardest in first person
+- **Directional melee** *(locked)* — melee is directional in the style of *Mordhau*'s "240" system: the strike angle is set by mouse movement just before/during the swing. The first weapon (a shortsword) has a **directional slash** (LMB, angle from mouse) and a **stab/thrust** (RMB, faster and longer reach, less damage). Deeper techniques (accel, drag, feint, directional parry) are a later layer to grow into.
+- **No dodge** *(locked)* — there is no dodge roll or dash. Survival comes from spacing, reading attacks, and committing carefully — not an escape button. (Combined with no stamina, deliberate play is enforced purely by danger, weapon recovery, and positioning.)
+- Hitstun, impact weight, and weapon recovery — combat feel is the most critical thing to get right and the hardest in first person
 - PvP exists but is **opt-in** (dueling in bases requires both players to accept; open PvP only in designated zones)
 
 ### Weapon Variety
@@ -326,6 +329,8 @@ Each profession's skill check should feel like a completely different game:
 If you die inside a location, **you lose everything you brought in**. Your gear, your materials, your crafted items — gone. The only things safe are what you left in your base.
 
 This is the tension engine of every run. Deciding what to bring is a real decision. Committing to a location is a real commitment. The base is not just a home — it's a vault.
+
+**Death sequence:** on death the player is returned to their base by an **instant cut** (no fade, no ragdoll) — all carried items are lost in the transition. The base is always the respawn point. (Kept deliberately minimal for now; a more cinematic death moment can be revisited during the Phase 7 polish pass.)
 
 Extraction is implicit: get back to your base and leave. The base is your extraction vehicle. There is no separate "extract" button — you navigate to your base door, travel away, and you're out.
 

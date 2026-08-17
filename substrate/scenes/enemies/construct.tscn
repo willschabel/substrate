@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b50ie0vjlexp2"]
+
+[ext_resource type="Script" uid="uid://dfkvciyl8auwo" path="res://scripts/enemies/construct.gd" id="1_a7mtx"]
+[ext_resource type="Script" uid="uid://c6vs7ojy6tu0l" path="res://scripts/combat/health.gd" id="2_oe85e"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qje3u"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hehmh"]
+radius = 0.4
+height = 1.6
+
+[node name="Construct" type="CharacterBody3D" unique_id=1845084875]
+collision_layer = 2
+script = ExtResource("1_a7mtx")
+
+[node name="Health" type="Node" parent="." unique_id=380784341]
+script = ExtResource("2_oe85e")
+max_health = 60.0
+max_shield = 0.0
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1198128355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CapsuleMesh_qje3u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1792429336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_hehmh")
